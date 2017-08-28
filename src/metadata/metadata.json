@@ -1,0 +1,396 @@
+{
+    "package": "Telegraph",
+    "tagline": "Telegraph API",
+    "description": "Telegra.ph is a minimalist publishing tool that allows you to create richly formatted posts and push them to the Web in just a click.",
+    "image": "https:\/\/logo.clearbit.com\/telegra.ph",
+    "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-Telegraph-Package",
+    "keywords": [
+        "API",
+        "telegraph",
+        "blog",
+        "posting"
+    ],
+    "accounts": {
+        "domain": "http:\/\/telegra.ph\/",
+        "credentials": [
+            "accessToken"
+        ]
+    },
+    "blocks": [
+        {
+            "name": "createAccount",
+            "description": "Use this method to create a new Telegraph account.",
+            "args": [
+                {
+                    "name": "shortName",
+                    "type": "String",
+                    "info": "Account name, helps users with several accounts remember which they are currently using.",
+                    "required": true
+                },
+                {
+                    "name": "authorName",
+                    "type": "String",
+                    "info": "Default author name used when creating new articles.",
+                    "required": false
+                },
+                {
+                    "name": "authorUrl",
+                    "type": "String",
+                    "info": "Default profile link, opened when users click on the author's name below the title. Can be any link, not necessarily to a Telegram profile or channel.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "editAccountInfo",
+            "description": "Use this method to update information about a Telegraph account. Pass only the parameters that you want to edit.",
+            "args": [
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "Access token of the Telegraph account.",
+                    "required": true
+                },
+                {
+                    "name": "shortName",
+                    "type": "String",
+                    "info": "New account name, helps users with several accounts remember which they are currently using.",
+                    "required": false
+                },
+                {
+                    "name": "authorName",
+                    "type": "String",
+                    "info": "New author name used when creating new articles.",
+                    "required": false
+                },
+                {
+                    "name": "authorUrl",
+                    "type": "String",
+                    "info": "New profile link, opened when users click on the author's name below the title. Can be any link, not necessarily to a Telegram profile or channel.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getAccountInfo",
+            "description": "Use this method to get information about a Telegraph account. Returns an Account object on success.",
+            "args": [
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "Access token of the Telegraph account.",
+                    "required": true
+                },
+                {
+                    "name": "fields",
+                    "type": "List",
+                    "structure": {
+                        "name": "field",
+                        "type": "Select",
+                        "options": [
+                            "short_name",
+                            "author_name",
+                            "author_url",
+                            "auth_url",
+                            "page_count"
+                        ]
+                    },
+                    "info": "List of account fields to return. Available fields: short_name, author_name, author_url, auth_url, page_count.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "revokeAccessToken",
+            "description": "Use this method to revoke access_token and generate a new one",
+            "args": [
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "Access token of the Telegraph account.",
+                    "required": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "createPage",
+            "description": "Use this method to create a new Telegraph page.",
+            "args": [
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "Access token of the Telegraph account.",
+                    "required": true
+                },
+                {
+                    "name": "title",
+                    "type": "String",
+                    "info": "Page title.",
+                    "required": true
+                },
+                {
+                    "name": "authorName",
+                    "type": "String",
+                    "info": "Author name, displayed below the article's title.",
+                    "required": false
+                },
+                {
+                    "name": "authorUrl",
+                    "type": "String",
+                    "info": "Profile link, opened when users click on the author's name below the title. Can be any link, not necessarily to a Telegram profile or channel.",
+                    "required": false
+                },
+                {
+                    "name": "content",
+                    "type": "List",
+                    "structure": {
+                        "name": "content",
+                        "type": "JSON",
+                        "info": "Single json object with content"
+                    },
+                    "info": "Content of the page.",
+                    "required": true
+                },
+                {
+                    "name": "returnContent",
+                    "type": "Select",
+                    "options": [
+                        "true",
+                        "false"
+                    ],
+                    "info": "If true, a content field will be returned in the Page object",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "editPage",
+            "description": "Use this method to edit Telegraph page.",
+            "args": [
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "Access token of the Telegraph account.",
+                    "required": true
+                },
+                {
+                    "name": "path",
+                    "type": "String",
+                    "info": "Path to the page.",
+                    "required": true
+                },
+                {
+                    "name": "title",
+                    "type": "String",
+                    "info": "Page title.",
+                    "required": true
+                },
+                {
+                    "name": "authorName",
+                    "type": "String",
+                    "info": "Author name, displayed below the article's title.",
+                    "required": false
+                },
+                {
+                    "name": "authorUrl",
+                    "type": "String",
+                    "info": "Profile link, opened when users click on the author's name below the title. Can be any link, not necessarily to a Telegram profile or channel.",
+                    "required": false
+                },
+                {
+                    "name": "content",
+                    "type": "List",
+                    "structure": {
+                        "name": "content",
+                        "type": "JSON",
+                        "info": "Single json object with content"
+                    },
+                    "info": "Content of the page.",
+                    "required": true
+                },
+                {
+                    "name": "returnContent",
+                    "type": "Select",
+                    "options": [
+                        "true",
+                        "false"
+                    ],
+                    "info": "If true, a content field will be returned in the Page object",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getPage",
+            "description": "Use this method to get a Telegraph page.",
+            "args": [
+                {
+                    "name": "path",
+                    "type": "String",
+                    "info": "Path to the page.",
+                    "required": true
+                },
+                {
+                    "name": "returnContent",
+                    "type": "Select",
+                    "options": [
+                        "true",
+                        "false"
+                    ],
+                    "info": "If true, a content field will be returned in the Page object",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getPageList",
+            "description": "Use this method to get a list of pages belonging to a Telegraph account. ",
+            "args": [
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "Access token of the Telegraph account.",
+                    "required": true
+                },
+                {
+                    "name": "limit",
+                    "type": "Number",
+                    "info": "Limits the number of pages to be retrieved.",
+                    "required": false
+                },
+                {
+                    "name": "offset",
+                    "type": "Number",
+                    "info": "Sequential number of the first page to be returned.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        },
+        {
+            "name": "getViews",
+            "description": "Use this method to get the number of views for a Telegraph article. ",
+            "args": [
+                {
+                    "name": "path",
+                    "type": "String",
+                    "info": "Path to the Telegraph page (in the format Title-12-31, where 12 is the month and 31 the day the article was first published).",
+                    "required": true
+                },
+                {
+                    "name": "year",
+                    "type": "Number",
+                    "info": "If passed, the number of page views for the requested year will be returned.",
+                    "required": true
+                },
+                {
+                    "name": "month",
+                    "type": "Number",
+                    "info": " If passed, the number of page views for the requested month will be returned.",
+                    "required": false
+                },
+                {
+                    "name": "day",
+                    "type": "Number",
+                    "info": " If passed, the number of page views for the requested day will be returned.",
+                    "required": false
+                },
+                {
+                    "name": "hour",
+                    "type": "Number",
+                    "info": " If passed, the number of page views for the requested hour will be returned.",
+                    "required": false
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "error",
+                    "info": "Error"
+                },
+                {
+                    "name": "success",
+                    "info": "Success"
+                }
+            ]
+        }
+    ]
+}
