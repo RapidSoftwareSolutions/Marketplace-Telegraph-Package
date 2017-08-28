@@ -1,0 +1,483 @@
+{
+  "package": "Telegraph",
+  "tagline": "Telegraph API",
+  "description": "Telegra.ph is a minimalist publishing tool that allows you to create richly formatted posts and push them to the Web in just a click.",
+  "image": "https://logo.clearbit.com/telegra.ph",
+  "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-Telegraph-Package",
+  "keywords": [
+    "API",
+    "telegraph",
+    "blog",
+    "posting"
+  ],
+  "accounts": {
+    "domain": "http://telegra.ph/",
+    "credentials": [
+          "accessToken"
+    ]
+  },
+
+  "blocks": [
+    {
+      "name": "createAccount",
+      "description": "Use this method to create a new Telegraph account.",
+      "args": [
+        {
+          "name": "shortName",
+          "vendorName": "short_name",
+          "type": "String",
+          "info": "Account name, helps users with several accounts remember which they are currently using.",
+          "required": true
+        },
+        {
+          "name": "authorName",
+          "vendorName": "author_name",
+          "type": "String",
+          "info": "Default author name used when creating new articles.",
+          "required": false
+        },
+        {
+          "name": "authorUrl",
+          "vendorName": "author_url",
+          "type": "String",
+          "info": "Default profile link, opened when users click on the author's name below the title. Can be any link, not necessarily to a Telegram profile or channel.",
+          "required": false
+        }
+
+      ],
+      "url": "https://api.telegra.ph/createAccount",
+      "request": {
+        "method": "get",
+        "params":
+        [
+          {
+            "paramsType": "query",
+            "bodyParams": ["short_name", "short_name", "short_name"]
+          }
+        ]
+      },
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
+    },
+    {
+      "name": "editAccountInfo",
+      "description": "Use this method to update information about a Telegraph account. Pass only the parameters that you want to edit.",
+      "args": [
+        {
+          "name": "accessToken",
+          "vendorName": "access_token",
+          "type": "String",
+          "info": "Access token of the Telegraph account.",
+          "required": true
+        },
+        {
+          "name": "shortName",
+          "vendorName": "short_name",
+          "type": "String",
+          "info": "New account name, helps users with several accounts remember which they are currently using.",
+          "required": false
+        },
+        {
+          "name": "authorName",
+          "vendorName": "author_name",
+          "type": "String",
+          "info": "New author name used when creating new articles.",
+          "required": false
+        },
+        {
+          "name": "authorUrl",
+          "vendorName": "author_url",
+          "type": "String",
+          "info": "New profile link, opened when users click on the author's name below the title. Can be any link, not necessarily to a Telegram profile or channel.",
+          "required": false
+        }
+
+      ],
+      "url": "https://api.telegra.ph/editAccountInfo",
+      "request": {
+        "method": "get",
+        "params":
+        [
+          {
+            "paramsType": "query",
+            "bodyParams": ["access_token","short_name", "author_name", "author_url"]
+          }
+        ]
+      },
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
+    },
+    {
+      "name": "getAccountInfo",
+      "description": "Use this method to get information about a Telegraph account. Returns an Account object on success.",
+      "args": [
+        {
+          "name": "accessToken",
+          "vendorName": "access_token",
+          "type": "String",
+          "info": "Access token of the Telegraph account.",
+          "required": true
+        },
+        {
+          "name": "fields",
+          "type": "List",
+          "structure": {
+            "name": "field",
+            "type": "Select",
+            "options": ["short_name", "author_name", "author_url", "auth_url", "page_count"]
+          },
+          "info": "List of account fields to return. Available fields: short_name, author_name, author_url, auth_url, page_count.",
+          "required": false
+        }
+      ],
+      "url": "https://api.telegra.ph/getAccountInfo",
+      "request": {
+        "method": "post",
+        "params":
+        [
+          {
+            "paramsType": "json",
+            "bodyParams": ["access_token","fields"]
+          }
+        ]
+      },
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
+    },
+    {
+      "name": "revokeAccessToken",
+      "description": "Use this method to revoke access_token and generate a new one",
+      "args": [
+        {
+          "name": "accessToken",
+          "vendorName": "access_token",
+          "type": "String",
+          "info": "Access token of the Telegraph account.",
+          "required": true
+        }
+      ],
+      "url": "https://api.telegra.ph/revokeAccessToken",
+      "request": {
+        "method": "get",
+        "params":
+        [
+          {
+            "paramsType": "json",
+            "bodyParams": ["access_token"]
+          }
+        ]
+      },
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
+    },
+    {
+      "name": "createPage",
+      "description": "Use this method to create a new Telegraph page.",
+      "args": [
+        {
+          "name": "accessToken",
+          "vendorName": "access_token",
+          "type": "String",
+          "info": "Access token of the Telegraph account.",
+          "required": true
+        },
+        {
+          "name": "title",
+          "vendorName": "title",
+          "type": "String",
+          "info": "Page title.",
+          "required": true
+        },
+        {
+          "name": "authorName",
+          "vendorName": "author_name",
+          "type": "String",
+          "info": "Author name, displayed below the article's title.",
+          "required": false
+        },
+        {
+          "name": "authorUrl",
+          "vendorName": "author_url",
+          "type": "String",
+          "info": "Profile link, opened when users click on the author's name below the title. Can be any link, not necessarily to a Telegram profile or channel.",
+          "required": false
+        },
+        {
+          "name": "content",
+          "type": "List",
+          "structure": {
+            "name": "content",
+            "type": "JSON",
+            "info": "Single json object with content"
+          },
+          "info": "Content of the page.",
+          "required": true
+        },
+        {
+          "name": "returnContent",
+          "vendorName": "return_content",
+          "type": "Select",
+          "options": ["true", "false"],
+          "info": "If true, a content field will be returned in the Page object",
+          "required": false
+        }
+
+      ],
+      "url": "https://api.telegra.ph/createPage",
+      "request": {
+        "method": "post",
+        "params":
+        [
+          {
+            "paramsType": "json",
+            "bodyParams": ["access_token","content", "author_name", "author_url", "return_content"]
+          }
+        ]
+      },
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
+    },
+    {
+      "name": "editPage",
+      "description": "Use this method to edit Telegraph page.",
+      "args": [
+        {
+          "name": "accessToken",
+          "vendorName": "access_token",
+          "type": "String",
+          "info": "Access token of the Telegraph account.",
+          "required": true
+        },
+        {
+          "name": "path",
+          "type": "String",
+          "info": "Path to the page.",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "info": "Page title.",
+          "required": true
+        },
+        {
+          "name": "authorName",
+          "vendorName": "author_name",
+          "type": "String",
+          "info": "Author name, displayed below the article's title.",
+          "required": false
+        },
+        {
+          "name": "authorUrl",
+          "vendorName": "author_url",
+          "type": "String",
+          "info": "Profile link, opened when users click on the author's name below the title. Can be any link, not necessarily to a Telegram profile or channel.",
+          "required": false
+        },
+        {
+          "name": "content",
+          "type": "List",
+          "structure": {
+            "name": "content",
+            "type": "JSON",
+            "info": "Single json object with content"
+          },
+          "info": "Content of the page.",
+          "required": true
+        },
+        {
+          "name": "returnContent",
+          "vendorName": "return_content",
+          "type": "Select",
+          "options": ["true", "false"],
+          "info": "If true, a content field will be returned in the Page object",
+          "required": false
+        }
+
+      ],
+      "url": "https://api.telegra.ph/editPage/{$data['path']}",
+      "request": {
+        "method": "post",
+        "params":
+        [
+          {
+            "paramsType": "json",
+            "bodyParams": ["access_token","content", "author_name", "author_url", "return_content"]
+          }
+        ]
+      },
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
+    },
+    {
+      "name": "getPage",
+      "description": "Use this method to get a Telegraph page.",
+      "args": [
+
+        {
+          "name": "path",
+          "type": "String",
+          "info": "Path to the page.",
+          "required": true
+        },
+        {
+          "name": "returnContent",
+          "vendorName": "return_content",
+          "type": "Select",
+          "options": ["true", "false"],
+          "info": "If true, a content field will be returned in the Page object",
+          "required": false
+        }
+
+      ],
+      "url": "https://api.telegra.ph/getPage/{$data['path']}",
+      "request": {
+        "method": "get",
+        "params":
+        [
+          {
+            "paramsType": "query",
+            "bodyParams": ["return_content"]
+          }
+        ]
+      },
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
+    },
+    {
+      "name": "getPageList",
+      "description": "Use this method to get a list of pages belonging to a Telegraph account. ",
+      "args": [
+        {
+          "name": "accessToken",
+          "vendorName": "access_token",
+          "type": "String",
+          "info": "Access token of the Telegraph account.",
+          "required": true
+        },
+        {
+          "name": "limit",
+          "type": "Number",
+          "info": "Limits the number of pages to be retrieved.",
+          "required": false
+        },
+        {
+          "name": "offset",
+          "type": "Number",
+          "info": "Sequential number of the first page to be returned.",
+          "required": false
+        }
+
+      ],
+      "url": "https://api.telegra.ph/getPageList",
+      "request": {
+        "method": "get",
+        "params":
+        [
+          {
+            "paramsType": "query",
+            "bodyParams": ["limit", "access_token", "offset"]
+          }
+        ]
+      },
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
+    },
+    {
+      "name": "getViews",
+      "description": "Use this method to get the number of views for a Telegraph article. ",
+      "args": [
+
+        {
+          "name": "path",
+          "type": "String",
+          "info": "Path to the Telegraph page (in the format Title-12-31, where 12 is the month and 31 the day the article was first published).",
+          "required": true
+        },
+        {
+          "name": "year",
+          "type": "Number",
+          "info": "If passed, the number of page views for the requested year will be returned.",
+          "required": true
+        },
+        {
+          "name": "month",
+          "type": "Number",
+          "info": " If passed, the number of page views for the requested month will be returned.",
+          "required": false
+        },
+        {
+          "name": "day",
+          "type": "Number",
+          "info": " If passed, the number of page views for the requested day will be returned.",
+          "required": false
+        },
+        {
+          "name": "hour",
+          "type": "Number",
+          "info": " If passed, the number of page views for the requested hour will be returned.",
+          "required": false
+        }
+
+      ],
+      "url": "https://api.telegra.ph/getViews/{$data['path']}",
+      "request": {
+        "method": "get",
+        "params":
+        [
+          {
+            "paramsType": "query",
+            "bodyParams": ["year", "month", "day", "hour"]
+          }
+        ]
+      },
+      "callbacks": [{
+        "name": "error",
+        "info": "Error"
+      }, {
+        "name": "success",
+        "info": "Success"
+      }]
+    }
+  ]
+}

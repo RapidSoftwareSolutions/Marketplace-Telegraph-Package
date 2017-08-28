@@ -15,7 +15,7 @@ $app->post('/api/Telegraph/editPage', function ($request, $response) {
     $requiredParams = ['accessToken'=>'access_token','path'=>'path','title'=>'title','content'=>'content'];
     $optionalParams = ['authorName'=>'author_name','authorUrl'=>'author_url','returnContent'=>'return_content'];
     $bodyParams = [
-       'json' => ['access_token','content','author_name','author_url','return_content']
+       'json' => ['access_token','content','author_name','author_url','return_content', 'title']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
