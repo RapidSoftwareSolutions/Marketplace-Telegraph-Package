@@ -15,7 +15,7 @@ $app->post('/api/Telegraph/createAccount', function ($request, $response) {
     $requiredParams = ['shortName'=>'short_name'];
     $optionalParams = ['authorName'=>'author_name','authorUrl'=>'author_url'];
     $bodyParams = [
-       'query' => ['short_name','short_name','short_name']
+       'query' => ['short_name','author_name','author_url']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
