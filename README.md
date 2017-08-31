@@ -2,7 +2,7 @@
 
 # Telegraph Package
 Telegra.ph is a minimalist publishing tool that allows you to create richly formatted posts and push them to the Web in just a click.
-* Domain: [Telegraph](http://http://telegra.ph/)
+* Domain: [Telegraph](http://telegra.ph/)
 * Credentials: accessToken
 
 ## How to get credentials: 
