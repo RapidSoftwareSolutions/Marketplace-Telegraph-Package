@@ -6,7 +6,7 @@ Telegra.ph is a minimalist publishing tool that allows you to create richly form
 * Credentials: accessToken
 
 ## How to get credentials: 
-0. To get your accessToken please use createAccount block
+1. To get your accessToken please use createAccount block
 
 
 

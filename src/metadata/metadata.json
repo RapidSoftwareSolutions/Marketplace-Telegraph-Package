@@ -16,6 +16,9 @@
             "accessToken"
         ]
     },
+    "steps": [
+        "To get your accessToken please use createAccount block"
+    ],
     "blocks": [
         {
             "name": "createAccount",
